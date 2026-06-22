@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   ADRIATIC NAUTICAL + ~20% billionaire-son swagger.
+   Base: deep navy water, sea-teal, off-white. Swagger: coral pop + money gold,
+   oversized display serif. Distinct from the wedding site's warm forest palette.
+   ============================================================================= */
+@theme {
+  --color-abyss: #06121f;
+  --color-navy: #0c2740;
+  --color-navy-2: #103a5c;
+  --color-teal: #16a6a6;
+  --color-teal-deep: #0e7c7c;
+  --color-coral: #ff6f5e;
+  --color-gold: #e3b23c;
+  --color-gold-soft: #f0d488;
+  --color-sand: #f3ede2;
+  --color-foam: #cfe2e4;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-abyss);
+  /* dark, theme-matched scrollbar (Firefox) -- kills the bright default bar */
+  scrollbar-color: var(--color-teal-deep) var(--color-abyss);
+  scrollbar-width: thin;
+}
+
+/* dark, theme-matched scrollbar (Chrome/Safari/Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal-deep);
+  border-radius: 9999px;
+  border: 2px solid var(--color-abyss);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
+}
+
+body {
+  background-color: var(--color-abyss);
+  color: var(--color-sand);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-abyss);
+}
+
+/* Money-gold gradient text for the swagger headlines. */
+.text-gradient-gold {
+  background: linear-gradient(100deg, var(--color-gold-soft), var(--color-gold) 45%, var(--color-coral));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle moving-water sheen behind hero. */
+.bg-deep-water {
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(22, 166, 166, 0.25), transparent 60%),
+    radial-gradient(900px 500px at 10% 10%, rgba(255, 111, 94, 0.12), transparent 55%),
+    linear-gradient(180deg, var(--color-navy) 0%, var(--color-abyss) 70%);
+}
+
+/* Thin gold hairline divider. */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
