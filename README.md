@@ -4,7 +4,7 @@ The planning site for Satwik's bachelor weekend in London, Fri May 7 to Mon May 
 The folder name is historical. The site gives each guest the estimated costs, the two optional
 events, the hotel and activity shortlists, and a response form.
 
-Live at https://satwik-overboard.vercel.app.
+Live at https://spurs-top-of-the-league.vercel.app.
 
 ## Stack
 
