@@ -1,52 +1,41 @@
 # Bachelor-Croatia-2026
 
-Best-man planning hub for the Croatia bachelor trip. The centerpiece is an
-availability survey: the crew picks which Saturday-to-Saturday Yacht Week window
-they can make, and a live tally surfaces the week most people can attend.
+The planning site for Satwik's bachelor weekend in London, Fri May 7 to Mon May 10, 2027.
+The folder name is historical. The site gives each guest the estimated costs, the two optional
+events, the hotel and activity shortlists, and a response form.
+
+Live at https://satwik-overboard.vercel.app.
 
 ## Stack
 
-- Next.js 15 (App Router) + TypeScript
-- Tailwind CSS v4 (CSS-first `@theme` tokens in `app/globals.css`)
-- Bun (package manager + test runner)
-- Persistence: localStorage stub today, one-file swap to Supabase later (`lib/survey-store.ts`)
-
-## Run it
+Next.js 15 (App Router) + TypeScript + Tailwind v4 on Vercel, with Supabase for the response form.
+Bun is the package manager and the test runner.
 
 ```bash
 bun install
-bun dev          # http://localhost:3000 (falls back to 3001 if busy)
-bun test         # 15 tests: survey logic + data integrity
+bun dev          # local dev server
+bun test         # unit tests
 bun run build    # production build
 ```
 
-## Where things live
+## Layout
 
 | Path | What |
 |------|------|
-| `lib/data.ts` | SINGLE SOURCE OF TRUTH: trip config, the 11 week windows, route, costs, crew, FAQ. Edit here. |
-| `lib/survey-store.ts` | Survey persistence seam. Swap these 4 functions for Supabase; nothing else changes. |
-| `components/AvailabilitySurvey.tsx` | The centerpiece. Form + live tally + leading-week highlight. |
-| `components/EuroHopGated.tsx` | GATED placeholder. Do not build the real planner until the groom decides. |
-| `tests/` | `bun test` suite (pure logic only; visuals are inspected, not unit-tested). |
-| `app/page.tsx` | Section assembly order. |
+| `lib/data.ts` | The single source of truth for all site content: trip config, costs, events, hotels, activities, schedule, guests, FAQ. Every price names its source. |
+| `lib/rsvp-store.ts` | Response form persistence. It calls the two Supabase functions, or falls back to localStorage when no Supabase env vars are set. |
+| `supabase/london_rsvp.sql` | The schema for the response form. Run it once in the Supabase SQL editor. |
+| `components/` | One component per page section. |
+| `tests/` | `bun test` suite for the data integrity and the form logic. |
 
-## Editing the trip
+## Privacy model
 
-Everything you are likely to change is in `lib/data.ts`:
+Each response holds a name, weekend attendance, two event opt-ins, and a note. The browser can
+save a response and can read back only the name and the attendance, which the guest list shows.
+The event opt-ins and the notes stay in the database. The anon key has no table grants. It can
+only call `submit_london_rsvp` and `london_attendance`, which are security definer functions.
 
-- `TRIP.year` + `WEEKS` -- if targeting 2027 instead of 2026, change these.
-- `TRIP.decisionDeadline` -- the hero countdown target (the survey lock-in date).
-- `CREW` -- replace the `TBD` placeholders with real names.
+## Environment
 
-## Design
-
-Adriatic-nautical palette (deep navy, sea-teal, off-white) with a deliberate ~20%
-of gold/coral swagger. This emulates the energy of the wedding site (melwik.com)
-while staying visually distinct from it. Tokens live in `app/globals.css` under `@theme`.
-
-## Project conventions
-
-This project follows the 3-file agentic standard: `CLAUDE.md` (static identity +
-hard rules), `MEMORY.md` (dynamic state), `ANTIPATTERNS.md` (hard stops), plus
-`PLAN.md` (linear critical path). All four are `.gitignore`d and never committed.
+`.env.local` (gitignored) holds `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+Never commit a service role key.
