@@ -1,89 +1,95 @@
 @import "tailwindcss";
 
 /* =============================================================================
-   ADRIATIC NAUTICAL + ~20% billionaire-son swagger.
-   Base: deep navy water, sea-teal, off-white. Swagger: coral pop + money gold,
-   oversized display serif. Distinct from the wedding site's warm forest palette.
+   LONDON (v2). Structure borrowed from zydromarine.com (gridded nav, grotesk +
+   mono type, a paper sheet sliding over a dark map hero, node-and-wire diagrams).
+   Palette is our own: night ink, paper, pillar-box red, brass.
    ============================================================================= */
 @theme {
-  --color-abyss: #06121f;
-  --color-navy: #0c2740;
-  --color-navy-2: #103a5c;
-  --color-teal: #16a6a6;
-  --color-teal-deep: #0e7c7c;
-  --color-coral: #ff6f5e;
-  --color-gold: #e3b23c;
-  --color-gold-soft: #f0d488;
-  --color-sand: #f3ede2;
-  --color-foam: #cfe2e4;
+  --color-ink: #0d1117;
+  --color-ink-2: #161c26;
+  --color-ink-3: #222a37;
+  --color-paper: #f4f1ea;
+  --color-paper-2: #e8e3d7;
+  --color-slate: #1b2330;
+  --color-muted: #5b6472;
+  --color-red: #d23c2a;
+  --color-red-deep: #a92e20;
+  --color-brass: #c39a45;
+  --color-mist: #c9d1dc;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, SFMono-Regular, monospace;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-abyss);
-  /* dark, theme-matched scrollbar (Firefox) -- kills the bright default bar */
-  scrollbar-color: var(--color-teal-deep) var(--color-abyss);
+  background-color: var(--color-ink);
+  scrollbar-color: var(--color-ink-3) var(--color-ink);
   scrollbar-width: thin;
 }
 
-/* dark, theme-matched scrollbar (Chrome/Safari/Edge) */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-abyss);
+  background: var(--color-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-teal-deep);
+  background: var(--color-ink-3);
   border-radius: 9999px;
-  border: 2px solid var(--color-abyss);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-teal);
+  border: 2px solid var(--color-ink);
 }
 
 body {
-  background-color: var(--color-abyss);
-  color: var(--color-sand);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--color-gold);
-  color: var(--color-abyss);
+  background: var(--color-red);
+  color: var(--color-paper);
 }
 
-/* Money-gold gradient text for the swagger headlines. */
-.text-gradient-gold {
-  background: linear-gradient(100deg, var(--color-gold-soft), var(--color-gold) 45%, var(--color-coral));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Subtle moving-water sheen behind hero. */
-.bg-deep-water {
+/* Dark overlay that sits over the hero map, Zydro-style. */
+.hero-veil {
   background:
-    radial-gradient(1200px 600px at 70% -10%, rgba(22, 166, 166, 0.25), transparent 60%),
-    radial-gradient(900px 500px at 10% 10%, rgba(255, 111, 94, 0.12), transparent 55%),
-    linear-gradient(180deg, var(--color-navy) 0%, var(--color-abyss) 70%);
+    linear-gradient(90deg, rgba(13, 17, 23, 0.92) 0%, rgba(13, 17, 23, 0.55) 55%, rgba(13, 17, 23, 0.35) 100%),
+    linear-gradient(180deg, rgba(13, 17, 23, 0) 60%, rgba(13, 17, 23, 0.9) 100%);
 }
 
-/* Thin gold hairline divider. */
-.rule-gold {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+/* Faint drafting grid for the dark diagram section. */
+.bg-drafting {
+  background-color: var(--color-ink-2);
+  background-image:
+    linear-gradient(rgba(201, 209, 220, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 209, 220, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(6px); opacity: 1; }
 }
-.animate-floaty {
-  animation: floaty 6s ease-in-out infinite;
+.animate-nudge {
+  animation: nudge 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(195, 154, 69, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(195, 154, 69, 0); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-nudge,
+  .animate-pulse-dot {
+    animation: none;
+  }
 }

@@ -2,73 +2,70 @@
 
 import { useEffect, useState } from "react";
 import { CREW, Guest } from "@/lib/data";
-import { getResponses } from "@/lib/survey-store";
+import { Attendance, attendanceByName, getAttendance, nameKey } from "@/lib/rsvp-store";
 import { Section } from "./Section";
 
-const STATUS_STYLE: Record<string, string> = {
-  in: "border-gold/60 bg-gold/10 text-gold",
-  locked: "border-teal/50 text-teal",
-  likely: "border-gold/50 text-gold",
-  invited: "border-coral/50 text-coral",
-  tbd: "border-white/15 text-foam/40",
+type Status = Attendance | "locked" | "no reply";
+
+const STATUS_STYLE: Record<Status, string> = {
+  locked: "border-ink bg-ink text-paper",
+  in: "border-red bg-red text-paper",
+  maybe: "border-brass text-brass",
+  out: "border-slate/30 text-muted line-through",
+  "no reply": "border-slate/20 text-muted/70",
+};
+
+const STATUS_LABEL: Record<Status, string> = {
+  locked: "Confirmed",
+  in: "Attending",
+  maybe: "Maybe",
+  out: "Not attending",
+  "no reply": "No response",
 };
 
 export function Crew() {
-  // Names that have submitted availability (lowercased for matching the selector values).
-  const [responded, setResponded] = useState<Set<string>>(new Set());
+  // Public slice only: name + attendance. Spurs/Gymkhana picks are never fetched.
+  const [byName, setByName] = useState<Map<string, Attendance>>(new Map());
 
   useEffect(() => {
-    getResponses()
-      .then((entries) => setResponded(new Set(entries.map((e) => e.name.trim().toLowerCase()))))
+    getAttendance()
+      .then((rows) => setByName(attendanceByName(rows)))
       .catch((err) => console.error("[crew] load failed", err));
   }, []);
 
-  // Locked guests stay locked; anyone who has submitted flips invited -> in; else original.
-  function displayStatus(g: Guest): string {
-    if (g.status === "locked") return "locked";
-    if (responded.has(g.name.trim().toLowerCase())) return "in";
-    return g.status;
+  function status(g: Guest): Status {
+    if (g.locked) return "locked";
+    return byName.get(nameKey(g.name)) ?? "no reply";
   }
 
-  const inCount = CREW.filter((g) => displayStatus(g) === "in").length;
+  const inCount = CREW.filter((g) => status(g) === "in").length;
 
   return (
     <Section
       id="crew"
-      eyebrow="The Lineup"
-      title={
-        <>
-          The <span className="text-teal">manifest</span>.
-        </>
-      }
+      eyebrow="07 / Guests"
+      title="Guest list"
+      lead="The guest list shows the attendance of each guest for the weekend. It does not show event selections."
     >
-      <p className="mx-auto mb-10 max-w-2xl text-center text-foam/70">
-        Satwik&rsquo;s side of the wedding party. Groom and best man are locked; everyone
-        else flips from &ldquo;invited&rdquo; to &ldquo;in&rdquo; the moment they complete the survey.
-        <span className="ml-1 font-bold uppercase tracking-[0.2em] text-gold">#SatwikOverboard</span>
-      </p>
-
       {inCount > 0 && (
-        <p className="mb-8 text-center text-sm text-gold">
-          {inCount} {inCount === 1 ? "reply" : "replies"} in so far.
+        <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-red">
+          {inCount} confirmed, plus the groom and the best man
         </p>
       )}
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {CREW.map((g, i) => {
-          const status = displayStatus(g);
+      <div className="grid border-l border-t border-slate/15 sm:grid-cols-2 lg:grid-cols-3">
+        {CREW.map((g) => {
+          const s = status(g);
           return (
-            <div
-              key={`${g.name}-${i}`}
-              className="rounded-2xl border border-white/8 bg-white/[0.03] p-5 text-center transition-transform hover:-translate-y-1"
-            >
-              <p className="font-display text-xl font-bold text-sand">{g.name}</p>
+            <div key={g.name} className="flex items-center justify-between gap-4 border-b border-r border-slate/15 p-5">
+              <div>
+                <p className="font-display text-lg font-medium text-ink">{g.name}</p>
+                <p className="text-sm text-muted">{g.role}</p>
+              </div>
               <span
-                className={`mt-3 inline-block rounded-full border px-2.5 py-0.5 text-[10px] uppercase tracking-wider ${STATUS_STYLE[status]}`}
+                className={`shrink-0 border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] ${STATUS_STYLE[s]}`}
               >
-                {status}
+                {STATUS_LABEL[s]}
               </span>
-              <p className="mt-3 text-sm text-foam/55">{g.role}</p>
             </div>
           );
         })}

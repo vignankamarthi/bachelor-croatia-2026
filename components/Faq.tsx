@@ -3,23 +3,15 @@ import { Section } from "./Section";
 
 export function Faq() {
   return (
-    <Section
-      id="faq"
-      eyebrow="FAQ"
-      title={
-        <>
-          The <span className="text-gradient-gold">obvious</span> questions.
-        </>
-      }
-    >
-      <div className="divide-y divide-white/8 rounded-2xl border border-white/10">
+    <Section id="faq" eyebrow="08 / FAQ" title="Frequently asked questions">
+      <div className="max-w-3xl divide-y divide-slate/15 border-y border-slate/15">
         {FAQS.map((f) => (
-          <details key={f.q} className="group px-6 py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-sand">
+          <details key={f.q} className="group py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-ink">
               {f.q}
-              <span className="ml-4 text-gold transition-transform group-open:rotate-45">+</span>
+              <span className="ml-4 font-mono text-red transition-transform group-open:rotate-45">+</span>
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-foam/65">{f.a}</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-muted">{f.a}</p>
           </details>
         ))}
       </div>

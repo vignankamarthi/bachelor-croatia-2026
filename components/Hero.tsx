@@ -1,59 +1,60 @@
 import { TRIP } from "@/lib/data";
 import { Countdown } from "./Countdown";
+import { LondonMap } from "./LondonMap";
+import { Eyebrow } from "./Section";
 
 export function Hero() {
   return (
-    <header id="top" className="relative overflow-hidden bg-deep-water">
-      <div className="mx-auto flex min-h-[88vh] max-w-5xl flex-col items-center justify-center px-6 py-24 text-center">
-        <p className="mb-3 text-sm uppercase tracking-[0.4em] text-teal animate-floaty">
-          {TRIP.city} / {TRIP.country} / {TRIP.year}
-        </p>
-        <p className="mb-5 text-xs font-bold uppercase tracking-[0.3em] text-gold">
-          #SatwikOverboard
-        </p>
+    <header id="top" className="relative min-h-[100svh] overflow-hidden">
+      <LondonMap />
+      <div className="hero-veil absolute inset-0" />
 
-        <h1 className="font-display text-[clamp(2.75rem,9vw,7rem)] font-black leading-[0.95] text-sand">
-          {TRIP.guestOfHonor}&rsquo;s
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-4 pb-32 pt-28 sm:px-6">
+        <Eyebrow tone="light">
+          {TRIP.city} / {TRIP.dates}
+        </Eyebrow>
+
+        <h1 className="max-w-3xl font-display text-[clamp(2.6rem,8vw,5.5rem)] font-medium leading-[0.98] tracking-tight text-paper">
+          {TRIP.guestOfHonor}&rsquo;s bachelor weekend
           <br />
-          <span className="text-gradient-gold">Last Voyage</span>
+          <span className="text-red">in London.</span>
         </h1>
 
-        <p className="mt-4 font-display text-[clamp(1.25rem,3.5vw,2rem)] italic text-foam/75">
-          before the shackles take him forever.
+        <p className="mt-6 max-w-xl text-lg text-mist/90 sm:text-xl">
+          This page gives the estimated costs and the two main events. Each guest selects the
+          events that they will attend. Please complete the form by {TRIP.responseDeadlineLabel}.
         </p>
 
-        <p className="mx-auto mt-6 max-w-xl text-lg text-foam/80">
-          {TRIP.tagline} One last week of freedom on the Adriatic. A yacht, seven islands,
-          and a sending-off we will never forget (and legally cannot fully remember).
-        </p>
-
-        <div className="mt-12">
-          <p className="mb-3 text-xs uppercase tracking-[0.3em] text-foam/50">
-            Fill the availability form before this hits zero
-          </p>
-          <div className="flex justify-center">
-            <Countdown deadline={TRIP.decisionDeadline} />
-          </div>
-          <p className="mx-auto mt-3 max-w-md text-sm font-semibold text-coral">
-            You have 50 days. Submit your dates below, we book the second the clock dies.
-          </p>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="#rsvp"
+            className="inline-flex items-center gap-2 bg-ink px-6 py-3 font-medium text-paper ring-1 ring-white/20 transition-colors hover:bg-red"
+          >
+            Complete the form <span className="text-red">&rarr;</span>
+          </a>
+          <a
+            href="#costs"
+            className="inline-flex items-center border border-white/30 px-6 py-3 font-medium text-paper transition-colors hover:border-paper hover:bg-white/5"
+          >
+            See the costs
+          </a>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <a
-            href="#survey"
-            className="rounded-full bg-gold px-7 py-3 font-semibold text-abyss transition-transform hover:scale-105"
-          >
-            Send it 😛
-          </a>
-          <a
-            href="#plan"
-            className="rounded-full border border-white/15 px-7 py-3 font-semibold text-sand transition-colors hover:border-gold hover:text-gold"
-          >
-            What is this trip
-          </a>
+        <div className="mt-14">
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-mist/60">
+            The form closes on {TRIP.responseDeadlineLabel}
+          </p>
+          <Countdown deadline={TRIP.responseDeadline} />
         </div>
       </div>
+
+      <a
+        href="#costs"
+        aria-label="Scroll to costs"
+        className="animate-nudge absolute bottom-16 right-6 font-mono text-2xl text-mist/70 sm:right-10"
+      >
+        &#8964;
+      </a>
     </header>
   );
 }

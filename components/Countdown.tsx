@@ -28,14 +28,10 @@ export function Countdown({ deadline }: { deadline: string }) {
   }, [target]);
 
   // Avoid hydration mismatch: render nothing until mounted.
-  if (!parts) return <div className="h-[88px]" aria-hidden />;
+  if (!parts) return <div className="h-[74px]" aria-hidden />;
 
   if (parts.done) {
-    return (
-      <p className="text-lg text-coral">
-        Lock-in deadline passed. Ping the best man before the boat sails without you.
-      </p>
-    );
+    return <p className="text-lg text-red">The form is closed. Please contact Vignan directly.</p>;
   }
 
   const cells: [number, string][] = [
@@ -46,16 +42,13 @@ export function Countdown({ deadline }: { deadline: string }) {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-3 sm:gap-5">
+    <div className="inline-flex divide-x divide-white/15 border border-white/15 bg-ink/60 backdrop-blur-sm">
       {cells.map(([v, label]) => (
-        <div
-          key={label}
-          className="min-w-[68px] rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-center backdrop-blur-sm sm:min-w-[84px]"
-        >
-          <div className="font-display text-3xl font-black tabular-nums text-gradient-gold sm:text-4xl">
+        <div key={label} className="min-w-[68px] px-3 py-3 text-center sm:min-w-[84px]">
+          <div className="font-display text-3xl font-medium tabular-nums text-paper sm:text-4xl">
             {String(v).padStart(2, "0")}
           </div>
-          <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-foam/60">{label}</div>
+          <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-mist/60">{label}</div>
         </div>
       ))}
     </div>

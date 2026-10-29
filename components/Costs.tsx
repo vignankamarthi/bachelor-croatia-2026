@@ -1,39 +1,29 @@
-import { COSTS, COST_HEADLINE } from "@/lib/data";
+import { COSTS, COST_FOOTNOTE, COST_TOTAL, formatUsd } from "@/lib/data";
 import { Section } from "./Section";
 
 export function Costs() {
   return (
     <Section
-      id="damage"
-      eyebrow="The Damage"
-      title={
-        <>
-          What it runs, <span className="text-gradient-gold">roughly</span>.
-        </>
-      }
+      id="costs"
+      eyebrow="01 / Fixed costs"
+      title="Estimated costs for each guest"
+      lead="These are ballpark estimates per person for three nights. Each guest pays these costs, whichever events they select."
     >
-      <p className="mx-auto mb-10 max-w-2xl text-center text-foam/70">{COST_HEADLINE}</p>
-
-      <div className="overflow-hidden rounded-2xl border border-white/10">
-        {COSTS.map((line, i) => (
-          <div
-            key={line.item}
-            className={`flex flex-col gap-1 px-6 py-5 sm:flex-row sm:items-center sm:justify-between ${
-              i % 2 === 0 ? "bg-white/[0.03]" : "bg-transparent"
-            }`}
-          >
-            <div>
-              <p className="font-semibold text-sand">{line.item}</p>
-              <p className="text-sm text-foam/55">{line.note}</p>
-            </div>
-            <p className="font-display text-2xl font-black text-gold">{line.amount}</p>
+      <div className="grid gap-px border border-slate/15 bg-slate/15 sm:grid-cols-2 lg:grid-cols-4">
+        {COSTS.map((c) => (
+          <div key={c.item} className="bg-paper p-6 sm:p-8">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{c.item}</p>
+            <p className="mt-3 font-display text-4xl font-medium tracking-tight text-ink">{formatUsd(c.low, c.high)}</p>
+            <p className="mt-4 text-[15px] leading-relaxed text-slate/80">{c.note}</p>
+            <p className="mt-4 font-mono text-[11px] leading-snug text-muted/80">Source: {c.source}</p>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-xs text-foam/40">
-        Rough numbers, not a budget meeting. The boat and the split get sorted together
-        once we&rsquo;re locked in. Your only job is telling us when you&rsquo;re free.
-      </p>
+      <div className="flex flex-col gap-2 bg-ink p-6 text-paper sm:flex-row sm:items-baseline sm:justify-between sm:p-8">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-mist/75">Total fixed costs per person</p>
+        <p className="font-display text-4xl font-medium tracking-tight">{formatUsd(COST_TOTAL.low, COST_TOTAL.high)}</p>
+      </div>
+      <p className="mt-4 text-sm text-muted">{COST_FOOTNOTE}</p>
     </Section>
   );
 }
