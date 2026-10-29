@@ -82,6 +82,7 @@ export type BigEvent = {
   name: string;
   when: string;
   price: string;
+  priceUsd: string; // rough conversion at 1 GBP = 1.337 USD (Alpha Vantage, 2026-10-29)
   priceNote: string;
   includes: string[];
   source: string;
@@ -93,6 +94,7 @@ export const BIG_TWO: BigEvent[] = [
     name: "Spurs vs Chelsea, Premium Seats",
     when: "Sat May 8, Tottenham Hotspur Stadium",
     price: "£399",
+    priceUsd: "~$535",
     priceNote: "per person. The club does not give discounts.",
     includes: [
       "Padded seats together in Block 002, next to the touchline",
@@ -107,6 +109,7 @@ export const BIG_TWO: BigEvent[] = [
     name: "Gymkhana, Private Dining at 42",
     when: "Sun May 9, Mayfair",
     price: "~£200-250",
+    priceUsd: "~$270-335",
     priceNote: "per person, estimated. The final price is confirmed at booking.",
     includes: [
       "A private dining room in Mayfair for up to 16 guests",

@@ -121,7 +121,7 @@ export function RsvpForm() {
                   <span>
                     <span className="block font-medium">{ev.name}</span>
                     <span className={`mt-1 block font-mono text-xs ${on ? "text-mist/75" : "text-muted"}`}>
-                      {ev.price} pp / {ev.when}
+                      {ev.price} ({ev.priceUsd}) pp / {ev.when}
                     </span>
                   </span>
                 </label>

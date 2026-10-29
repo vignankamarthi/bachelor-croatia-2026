@@ -81,6 +81,10 @@ describe("the big two", () => {
   it("keeps the Spurs price at the quoted GBP 399", () => {
     expect(BIG_TWO[0].price).toBe("£399");
   });
+
+  it("carries a rough USD conversion at 1.337 (GBP 399 -> ~$535, GBP 200-250 -> ~$270-335)", () => {
+    expect(BIG_TWO.map((e) => e.priceUsd)).toEqual(["~$535", "~$270-335"]);
+  });
 });
 
 describe("weekend + crew", () => {

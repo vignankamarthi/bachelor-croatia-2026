@@ -7,7 +7,13 @@ export function BigTwo() {
       id="big-two"
       eyebrow="02 / Optional events"
       title="The two main events"
-      lead="We are gauging interest in these two events. The responses decide if the group books one event or both. Each event is optional, and only Vignan sees your selections."
+      lead={
+        <>
+          <strong className="font-semibold text-ink">We are gauging interest in these two events.</strong> The
+          responses decide if the group books one event or both. Each event is optional, and only
+          Vignan sees your selections.
+        </>
+      }
     >
       <div className="grid gap-6 md:grid-cols-2">
         {BIG_TWO.map((e) => (
@@ -16,6 +22,7 @@ export function BigTwo() {
             <h3 className="mt-3 font-display text-2xl font-medium tracking-tight sm:text-3xl">{e.name}</h3>
             <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-y border-white/10 py-5">
               <span className="whitespace-nowrap font-display text-5xl font-medium tracking-tight text-paper">{e.price}</span>
+              <span className="whitespace-nowrap font-display text-2xl text-mist/80">({e.priceUsd})</span>
               <span className="text-sm text-mist/75">{e.priceNote}</span>
             </div>
             <ul className="mt-6 space-y-3">
