@@ -100,7 +100,7 @@ export function RsvpForm() {
 
         <fieldset disabled={out} className={out ? "opacity-40" : ""}>
           <legend className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            3. Select the events that you will attend (private)
+            3. Select the events that interest you (private)
           </legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {BIG_TWO.map((ev) => {
@@ -128,7 +128,7 @@ export function RsvpForm() {
               );
             })}
           </div>
-          <p className="mt-3 text-sm text-muted">Leave both boxes clear if you will not attend either event.</p>
+          <p className="mt-3 text-sm text-muted">Leave both boxes clear if neither event interests you.</p>
         </fieldset>
 
         <fieldset>

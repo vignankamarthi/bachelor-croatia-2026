@@ -7,7 +7,7 @@ export function BigTwo() {
       id="big-two"
       eyebrow="02 / Optional events"
       title="The two main events"
-      lead="Each event is optional. You can select both events, one event, or neither event. Only Vignan sees your selections."
+      lead="We are gauging interest in these two events. The responses decide if the group books one event or both. Each event is optional, and only Vignan sees your selections."
     >
       <div className="grid gap-6 md:grid-cols-2">
         {BIG_TWO.map((e) => (
