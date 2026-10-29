@@ -35,7 +35,7 @@ yarn-error.log*
 next-env.d.ts
 
 # agentic 3-file standard (never commit)
-CLAUDE.md
+AGENTS.md
 MEMORY.md
 ANTIPATTERNS.md
 
