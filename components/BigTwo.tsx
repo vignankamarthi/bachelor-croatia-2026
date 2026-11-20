@@ -5,7 +5,7 @@ export function BigTwo() {
   return (
     <Section
       id="big-two"
-      eyebrow="02 / Optional events"
+      eyebrow="03 / Optional events"
       title="The two main events"
       lead={
         <>

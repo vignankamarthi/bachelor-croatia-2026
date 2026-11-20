@@ -1,9 +1,9 @@
 import { TRIP } from "@/lib/data";
 
 const LINKS = [
+  { href: "#weekend", label: "Schedule" },
   { href: "#costs", label: "Costs" },
   { href: "#big-two", label: "Events" },
-  { href: "#weekend", label: "Schedule" },
   { href: "#crew", label: "Guests" },
   { href: "#faq", label: "FAQ" },
 ];

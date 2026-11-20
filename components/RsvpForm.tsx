@@ -54,7 +54,7 @@ export function RsvpForm() {
 
   if (saved) {
     return (
-      <Section id="rsvp" eyebrow="05 / The form" title="Thank you. Your response is saved.">
+      <Section id="rsvp" eyebrow="04 / The form" title="Thank you. Your response is saved.">
         <p className="max-w-xl text-lg text-muted">
           To change your response, submit the form again with the same name. The new response
           replaces the old one.
@@ -69,7 +69,7 @@ export function RsvpForm() {
   return (
     <Section
       id="rsvp"
-      eyebrow="05 / The form"
+      eyebrow="04 / The form"
       title="Response form"
       lead={`Please complete the form by ${TRIP.responseDeadlineLabel}. Only Vignan sees your event selections and your notes. The guest list shows only your attendance for the weekend.`}
     >

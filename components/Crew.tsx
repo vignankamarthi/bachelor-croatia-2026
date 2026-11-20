@@ -43,7 +43,7 @@ export function Crew() {
   return (
     <Section
       id="crew"
-      eyebrow="07 / Guests"
+      eyebrow="05 / Guests"
       title="Guest list"
       lead="The guest list shows the attendance of each guest for the weekend. It does not show event selections."
     >

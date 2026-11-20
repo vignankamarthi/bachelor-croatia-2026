@@ -8,7 +8,7 @@ export function Weekend() {
       <Section
         id="weekend"
         tone="light"
-        eyebrow="06 / Schedule"
+        eyebrow="01 / Schedule"
         title="Weekend schedule"
         lead="The schedule shows only the confirmed events. The venues for the Saturday night out and the Monday daytime activity are not yet confirmed."
       >

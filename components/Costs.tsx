@@ -5,7 +5,7 @@ export function Costs() {
   return (
     <Section
       id="costs"
-      eyebrow="01 / Fixed costs"
+      eyebrow="02 / Fixed costs"
       title="Estimated costs for each guest"
       lead="These are ballpark estimates per person for three nights. Each guest pays these costs, whichever events they select."
     >

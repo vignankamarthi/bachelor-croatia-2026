@@ -8,19 +8,19 @@ import { Crew } from "@/components/Crew";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 
-// Zydro rhythm: dark map hero, then a paper sheet that slides up over it.
+// Zydro rhythm: dark map hero, then the schedule sheet slides up over it, then the paper sheet.
 export default function Home() {
   return (
     <main>
       <Nav />
       <Hero />
-      <div className="relative z-10 -mt-12 rounded-t-3xl bg-paper text-slate">
+      <div className="relative z-10 -mt-12 overflow-hidden rounded-t-3xl">
+        <Weekend />
+      </div>
+      <div className="bg-paper text-slate">
         <Costs />
         <BigTwo />
         <RsvpForm />
-      </div>
-      <Weekend />
-      <div className="bg-paper text-slate">
         <Crew />
         <Faq />
       </div>
