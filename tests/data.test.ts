@@ -5,7 +5,7 @@ describe("trip config", () => {
   it("has a parseable response deadline before the trip", () => {
     const d = new Date(TRIP.responseDeadline).getTime();
     expect(Number.isNaN(d)).toBe(false);
-    expect(d).toBeLessThan(new Date("2027-05-07").getTime());
+    expect(d).toBeLessThan(new Date("2027-05-22").getTime());
   });
 
   it("keeps a professional register (no emojis, slang, or hashtags)", () => {
@@ -33,16 +33,16 @@ describe("costs", () => {
     }
   });
 
-  it("shows the ballparks Vignan set (hotel ~$400, food ~$250)", () => {
-    expect(formatUsd(COSTS[0].low, COSTS[0].high)).toBe("~$400");
-    expect(formatUsd(COSTS[1].low, COSTS[1].high)).toBe("~$715-870");
+  it("shows the May 22-25 pulls (hotel ~$250-475, flight ~$905-1,030) and the ballparks (food ~$250)", () => {
+    expect(formatUsd(COSTS[0].low, COSTS[0].high)).toBe("~$250-475");
+    expect(formatUsd(COSTS[1].low, COSTS[1].high)).toBe("~$905-1,030");
     expect(formatUsd(COSTS[2].low, COSTS[2].high)).toBe("~$250");
     expect(formatUsd(COSTS[3].low, COSTS[3].high)).toBe("~$250");
   });
 
   it("totals the four lines", () => {
-    expect(COST_TOTAL).toEqual({ low: 1615, high: 1770 });
-    expect(formatUsd(COST_TOTAL.low, COST_TOTAL.high)).toBe("~$1,615-1,770");
+    expect(COST_TOTAL).toEqual({ low: 1655, high: 2005 });
+    expect(formatUsd(COST_TOTAL.low, COST_TOTAL.high)).toBe("~$1,655-2,005");
   });
 });
 
@@ -78,18 +78,18 @@ describe("the big two", () => {
     }
   });
 
-  it("keeps the Spurs price at the quoted GBP 399", () => {
-    expect(BIG_TWO[0].price).toBe("£399");
+  it("keeps the Spurs price at the category A+ GBP 449", () => {
+    expect(BIG_TWO[0].price).toBe("£449");
   });
 
-  it("carries a rough USD conversion at 1.337 (GBP 399 -> ~$535, GBP 200-250 -> ~$270-335)", () => {
-    expect(BIG_TWO.map((e) => e.priceUsd)).toEqual(["~$535", "~$270-335"]);
+  it("carries a rough USD conversion at 1.309 (GBP 449 -> ~$590, GBP 330 -> ~$430)", () => {
+    expect(BIG_TWO.map((e) => e.priceUsd)).toEqual(["~$590", "~$430"]);
   });
 });
 
 describe("weekend + crew", () => {
-  it("runs Fri to Mon", () => {
-    expect(DAYS.map((d) => d.day)).toEqual(["Fri", "Sat", "Sun", "Mon"]);
+  it("runs Sat to Tue", () => {
+    expect(DAYS.map((d) => d.day)).toEqual(["Sat", "Sun", "Mon", "Tue"]);
   });
 
   it("has at most 14 crew, unique names, groom and best man locked", () => {
