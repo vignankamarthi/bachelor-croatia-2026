@@ -123,47 +123,6 @@ export const BIG_TWO: BigEvent[] = [
 ];
 
 // -----------------------------------------------------------------------------
-// HOTEL SHORTLIST -- 3-star West End hotels only. The group picks one.
-// Rates: 3-night refundable total for two adults, Sat May 22 to Tue May 25 2027,
-// pulled 2026-11-19 from each hotel's site (Zedwell via Google Hotels).
-// perPersonNight = GBP total / 6 x 1.309, rounded.
-// -----------------------------------------------------------------------------
-export type Hotel = { name: string; area: string; rating: string; perPersonNight: number; url: string };
-
-export const HOTELS: Hotel[] = [
-  { name: "Travelodge London Covent Garden", area: "Drury Lane", rating: "3-star, 3.8 (6.2k reviews)", perPersonNight: 84, url: "https://www.travelodge.co.uk/hotels/318/London-Central-Covent-Garden-hotel" },
-  { name: "Zedwell Piccadilly Circus", area: "Piccadilly", rating: "3-star, 4.0 (11.0k reviews)", perPersonNight: 117, url: "https://zedwellhotels.com/locations/london/piccadilly-circus/" },
-  { name: "The Z Hotel Soho", area: "Soho", rating: "3-star, 4.0 (1.4k reviews)", perPersonNight: 154, url: "https://www.thezhotels.com/hotels/soho/" },
-  { name: "The Z Hotel Covent Garden", area: "Covent Garden", rating: "3-star, 4.3 (1.2k reviews)", perPersonNight: 158, url: "https://www.thezhotels.com/hotels/covent-garden/" },
-];
-
-export const HOTEL_NOTE =
-  "Rates are per person per night, with two guests in each room. They are refundable rates for Sat May 22 to Tue May 25 2027, pulled on Nov 19 2026. Travelodge and Zedwell have twin rooms. The cheapest Z Hotel rooms for two have one double bed. Zedwell and Z Hotel rooms are small, and many rooms have no window.";
-
-// -----------------------------------------------------------------------------
-// ACTIVITY SHORTLIST -- the Monday daytime slot. No soccer. Prices not checked.
-// Source: PLAN.md activity ledger (2026-10-24). Links verified 2026-10-29. Whistle Punks was cut:
-// its domain now redirects to unrelated sites, so the venue could not be verified.
-// -----------------------------------------------------------------------------
-export type Activity = { type: string; name: string; where: string; blurb: string; url: string };
-
-export const ACTIVITIES: Activity[] = [
-  { type: "Comedy", name: "The Comedy Store", where: "Piccadilly", blurb: "Saturday shows at 6:30pm and 9:30pm. The late show is 18+.", url: "https://london.thecomedystore.co.uk/" },
-  { type: "Comedy", name: "Top Secret Comedy Club", where: "Covent Garden", blurb: "An 18+ club. Shows sell out, so book early.", url: "https://thetopsecretcomedyclub.co.uk/" },
-  { type: "Bowling", name: "Bloomsbury Bowling Lanes", where: "Bloomsbury", blurb: "The private Kingpin Suite has 5 lanes, ping-pong, and its own bar.", url: "https://bloomsburybowling.com/" },
-  { type: "Bowling", name: "All Star Lanes", where: "Holborn", blurb: "Bowling lanes with a cocktail bar and a restaurant.", url: "https://www.allstarlanes.co.uk/locations/holborn" },
-  { type: "Darts", name: "Flight Club", where: "Bloomsbury", blurb: "Team darts in private booths, with automatic scoring.", url: "https://flightclubdarts.com/uk/london-bloomsbury/" },
-  { type: "Shuffleboard", name: "Electric Shuffle", where: "King's Cross", blurb: "Shuffleboard for groups of 2 to 32.", url: "https://electricshuffle.com/uk/london/kings-cross" },
-  { type: "Mini golf", name: "Puttshack", where: "Bank", blurb: "Mini golf with interactive holes and automatic scoring.", url: "https://www.puttshack.com/uk/locations/bank/" },
-  { type: "Racing sim", name: "F1 Arcade", where: "St Paul's", blurb: "F1 driving simulators with a bar.", url: "https://f1arcade.com/uk/london" },
-  { type: "Karting", name: "F1 Drive London", where: "Tottenham", blurb: "Premium karting with a race format, about 1.5 hours.", url: "https://www.tottenhamhotspurstadium.com/f1-drive-london" },
-  { type: "Karting", name: "TeamSport Karting", where: "North Greenwich", blurb: "Indoor karting.", url: "https://www.team-sport.co.uk/go-kart-tracks/docklands" },
-  { type: "Clay shooting", name: "Clays", where: "Soho", blurb: "Virtual clay shooting with live leaderboards.", url: "https://clays.bar/soho" },
-  { type: "Multi-game", name: "Rocket Room", where: "Leicester Square", blurb: "Axe throwing, darts, shuffleboard, and beer pong in one venue.", url: "https://www.rocket-room.com/" },
-  { type: "Karaoke", name: "BAM Karaoke Box", where: "Victoria", blurb: "22 private karaoke rooms.", url: "https://uk.bam-karaokebox.com/" },
-];
-
-// -----------------------------------------------------------------------------
 // THE WEEKEND -- day-by-day sketch. Only fixed items are named; the rest is TBD.
 // -----------------------------------------------------------------------------
 export type Day = { day: string; date: string; title: string; blurb: string; optional?: boolean };

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import { TRIP, COSTS, COST_TOTAL, formatUsd, BIG_TWO, HOTELS, ACTIVITIES, DAYS, CREW, FAQS } from "@/lib/data";
+import { TRIP, COSTS, COST_TOTAL, formatUsd, BIG_TWO, DAYS, CREW, FAQS } from "@/lib/data";
 
 describe("trip config", () => {
   it("has a parseable response deadline before the trip", () => {
@@ -46,23 +46,7 @@ describe("costs", () => {
   });
 });
 
-describe("hotels + activities", () => {
-  it("lists only 3-star hotels, each with a verified https link", () => {
-    expect(HOTELS).toHaveLength(4);
-    for (const h of HOTELS) {
-      expect(h.rating.startsWith("3-star")).toBe(true);
-      expect(h.url.startsWith("https://")).toBe(true);
-    }
-  });
-
-  it("lists activities with https links and nothing soccer-related", () => {
-    expect(ACTIVITIES.length).toBeGreaterThan(0);
-    for (const a of ACTIVITIES) {
-      expect(a.url.startsWith("https://")).toBe(true);
-      expect(`${a.name} ${a.blurb}`.toLowerCase()).not.toMatch(/soccer|football/);
-    }
-  });
-
+describe("costs placeholders", () => {
   it("carries no unfilled placeholders", () => {
     const blob = JSON.stringify(COSTS);
     expect(blob).not.toContain("PENDING");

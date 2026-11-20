@@ -3,8 +3,6 @@ import { TRIP } from "@/lib/data";
 const LINKS = [
   { href: "#costs", label: "Costs" },
   { href: "#big-two", label: "Events" },
-  { href: "#hotels", label: "Hotels" },
-  { href: "#activities", label: "Activities" },
   { href: "#weekend", label: "Schedule" },
   { href: "#crew", label: "Guests" },
   { href: "#faq", label: "FAQ" },

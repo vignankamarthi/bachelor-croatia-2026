@@ -2,8 +2,6 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Costs } from "@/components/Costs";
 import { BigTwo } from "@/components/BigTwo";
-import { Hotels } from "@/components/Hotels";
-import { Activities } from "@/components/Activities";
 import { RsvpForm } from "@/components/RsvpForm";
 import { Weekend } from "@/components/Weekend";
 import { Crew } from "@/components/Crew";
@@ -19,8 +17,6 @@ export default function Home() {
       <div className="relative z-10 -mt-12 rounded-t-3xl bg-paper text-slate">
         <Costs />
         <BigTwo />
-        <Hotels />
-        <Activities />
         <RsvpForm />
       </div>
       <Weekend />
