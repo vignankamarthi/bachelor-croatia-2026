@@ -10,7 +10,7 @@ export function Weekend() {
         tone="light"
         eyebrow="06 / Schedule"
         title="Weekend schedule"
-        lead="The schedule shows only the confirmed events. The plans for Friday evening, the Sunday daytime activity, and the night out are not yet confirmed."
+        lead="The schedule shows only the confirmed events. The venues for the Saturday night out and the Monday daytime activity are not yet confirmed."
       >
         <div className="relative">
           {/* horizontal wire (desktop) */}

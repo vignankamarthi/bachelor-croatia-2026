@@ -7,7 +7,7 @@ export function Activities() {
       id="activities"
       eyebrow="04 / Activities"
       title="Activity shortlist"
-      lead="These are options for the Sunday daytime activity. The group selects one or two. Prices and group availability are not yet checked."
+      lead="These are options for the Monday daytime activity. The group selects one or two. Prices and group availability are not yet checked."
     >
       <div className="grid gap-px border border-slate/15 bg-slate/15 sm:grid-cols-2 lg:grid-cols-3">
         {ACTIVITIES.map((a) => {

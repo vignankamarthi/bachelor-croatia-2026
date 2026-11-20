@@ -3,9 +3,9 @@
 // No map tiles, no API keys, no third-party imagery.
 
 const PINS = [
-  { x: 1120, y: 150, label: "N17 / SPURS", sub: "SAT MAY 8" },
-  { x: 960, y: 430, label: "W1 / GYMKHANA", sub: "SUN MAY 9" },
-  { x: 1140, y: 500, label: "WC2 / HOTEL", sub: "FRI-MON" },
+  { x: 1120, y: 150, label: "N17 / SPURS", sub: "SUN MAY 23" },
+  { x: 960, y: 430, label: "W1 / GYMKHANA", sub: "MON MAY 24" },
+  { x: 1140, y: 500, label: "WC2 / HOTEL", sub: "SAT-TUE" },
 ];
 
 export function LondonMap() {
